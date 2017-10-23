@@ -11,7 +11,7 @@ public static int getTmReading() {
 	for (int i = 0; i < readingCount; i++) { 
 		//Refresh the analog pins so we get new readings 
 		r.refreshAnalogPins(); 
-		int reading = r.getAnalogPin(0).getValue(); 
+		int reading = r.getAnalogPin(1).getValue(); 
 		sum += reading; 
 		}
 	//Return the average reading 
@@ -21,7 +21,7 @@ public static int getTmReading() {
 public static void main(String[] args) {
 	
 	//Connect to the arduino 
-	r.setPort("/dev/cu.usbmodem1451");
+	r.setPort("/dev/tty.usbmodem99");
 	r.connect(); 
 	//Get the average thermistor reading
 	
@@ -29,7 +29,8 @@ public static void main(String[] args) {
 	
 	for(int i = 0; i<=10;i++) {
 		int thermistorReading = getTmReading();
-		System.out.println("Temp in celsius: " + (thermistorReading-650.516897)/-9.013820);
+		//System.out.println("Temp in celsius: " + ((thermistorReading-748.4394801)-8.274573517));
+		System.out.println("Temp in celsius: " + ((thermistorReading-794)/-9));
 		r.sleep(1000); //sleep for 1 second
 		}
 	}
