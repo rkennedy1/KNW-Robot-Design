@@ -21,7 +21,7 @@ public static int getTmReading() {
 public static void main(String[] args) {
 	
 	//Connect to the arduino 
-	r.setPort("/dev/tty.usbmodem99");
+	r.setPort("/dev/tty.usbmodem153");
 	r.connect(); 
 	//Get the average thermistor reading
 	
