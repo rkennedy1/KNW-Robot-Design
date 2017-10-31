@@ -13,15 +13,10 @@ public class LeftStartingBox {
 		r.sleep(500);
 		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,635); //right turn
 		r.sleep(500);
-		r.attachServo(RXTXRobot.SERVO1, 9);
+		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, 375,5000);
+		r.attachServo(RXTXRobot.SERVO1, 8);
 		r.moveServo(RXTXRobot.SERVO1, 180);
-		r.sleep(500);
-		r.attachServo(RXTXRobot.SERVO2, 8);
-		r.moveServo(RXTXRobot.SERVO2, 180);
-		r.sleep(500);
-		r.attachServo(RXTXRobot.SERVO3, 10);
-		r.moveServo(RXTXRobot.SERVO3, 25);
-		r.sleep(500);
+		r.sleep(20000);
 		r.close();
 	}
 }
