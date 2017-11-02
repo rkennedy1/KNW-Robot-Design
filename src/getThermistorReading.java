@@ -21,17 +21,17 @@ public static int getTmReading() {
 public static void main(String[] args) {
 	
 	//Connect to the arduino 
-	r.setPort("/dev/tty.usbmodem153");
+	r.setPort("/dev/tty.usbmodem1451");
 	r.connect(); 
 	//Get the average thermistor reading
 	
 	//Print the results System.out.println("The probe read the value: " + thermistorReading); 
 	
-	for(int i = 0; i<=10;i++) {
-		int thermistorReading = getTmReading();
+		double thermistorReading = getTmReading();
+		thermistorReading = 23.5321235321;
 		//System.out.println("Temp in celsius: " + ((thermistorReading-748.4394801)-8.274573517));
-		System.out.println("Temp in celsius: " + ((thermistorReading-794)/-9));
+		System.out.println("Temp in celsius: " + ((thermistorReading-794)/-8.8));
 		r.sleep(1000); //sleep for 1 second
-		}
+	r.close();
 	}
 }
