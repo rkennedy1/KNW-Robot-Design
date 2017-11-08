@@ -14,7 +14,7 @@ public class RunBothMotors {
 			r.runMotor(RXTXRobot.MOTOR1, -i, RXTXRobot.MOTOR2, i,25); // Run both motors forward indefinitely 
 			System.out.println(i);
 			}*/
-		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, 410,5000);
+		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, 410,1000);
 		
 		//r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,635); //right turn
 		//r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,625); //left turn
