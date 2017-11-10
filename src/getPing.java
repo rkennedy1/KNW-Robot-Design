@@ -2,12 +2,14 @@
 import rxtxrobot.*; 
  
 public class getPing { 
-	final private static int PING_PIN = 11; 
+	final private static int PING_PIN = 13; 
  
 	public static void main(String[] args) { 
 		RXTXRobot r = new ArduinoNano(); // Create RXTXRobot object 
 		r.setPort("/dev/cu.usbmodem1451"); // Set the port to COM3 
 		r.connect(); 
+		r.refreshAnalogPins();
+		r.refreshDigitalPins();
 		for (int x=0; x < 100; ++x) 
 		{ 
 			//Read the ping sensor value, which is connected to pin 12 
