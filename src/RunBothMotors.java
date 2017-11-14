@@ -2,16 +2,18 @@
 import rxtxrobot.*; 
 
 public class RunBothMotors {
-	final public static int PING_PIN = 12; 
+	final public static int PING_PINFront = 12; 
+	final public static int PING_PINSide = 4; 
+	
 	public static void main(String[] args) {
 		RXTXRobot r = new ArduinoUno(); // Create RXTXRobot object 
 		r.setPort("/dev/cu.usbmodem1451"); // Set port to "/dev/tty.usbmodem1451" 
 		r.connect();
 		r.setVerbose(true); // Turn on debugging messages 
 		r.attachMotor(RXTXRobot.MOTOR1, 5);		//right motor
-		r.attachMotor(RXTXRobot.MOTOR2,6);		//left motor
-		r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-475, 2000);	
-		r.close(); 
+		r.attachMotor(RXTXRobot.MOTOR2,6);
+   			r.runMotor(RXTXRobot.MOTOR1, 250, RXTXRobot.MOTOR2, -170,3200);
+		r.close();
 	}
 }
 

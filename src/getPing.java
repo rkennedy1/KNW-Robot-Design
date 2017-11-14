@@ -2,7 +2,7 @@
 import rxtxrobot.*; 
  
 public class getPing { 
-	final private static int PING_PIN = 12; 
+	final private static int PING_PIN = 4; 
  
 	public static void main(String[] args) { 
 		RXTXRobot r = new ArduinoNano(); // Create RXTXRobot object 
