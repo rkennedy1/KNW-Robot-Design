@@ -10,18 +10,7 @@ public class RunBothMotors {
 		r.setVerbose(true); // Turn on debugging messages 
 		r.attachMotor(RXTXRobot.MOTOR1, 5);		//right motor
 		r.attachMotor(RXTXRobot.MOTOR2,6);		//left motor
-		/*for(int i=100;i<500;i++) {
-			r.runMotor(RXTXRobot.MOTOR1, -i, RXTXRobot.MOTOR2, i,25); // Run both motors forward indefinitely 
-			System.out.println(i);
-			}*/
-		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, 410,1000);
-		
-		//r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,635); //right turn
-		//r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,625); //left turn
-		//System.out.println(r. getEncodedMotorPosition(RXTXRobot.MOTOR1));
-		//System.out.println(r. getEncodedMotorPosition(RXTXRobot.MOTOR2));
-		//r.sleep(5000); // Pause execution for 5 seconds, but the motors keep running. 
-		//r.runMotor(RXTXRobot.MOTOR1,0,RXTXRobot.MOTOR2,0,0); // Stop both motors 
+		r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-475, 2000);	
 		r.close(); 
 	}
 }
@@ -36,3 +25,13 @@ System.out.println(i);
 //		if (r.getPing(PING_PIN) < 35)
 //			r.runMotor(RXTXRobot.MOTOR1, 0, RXTXRobot.MOTOR2, 0,0);
 //	} 
+/*for(int i=100;i<500;i++) {
+r.runMotor(RXTXRobot.MOTOR1, -i, RXTXRobot.MOTOR2, i,25); // Run both motors forward indefinitely 
+System.out.println(i);
+}*/
+//r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,635); //right turn
+		//r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,625); //left turn
+		//System.out.println(r. getEncodedMotorPosition(RXTXRobot.MOTOR1));
+		//System.out.println(r. getEncodedMotorPosition(RXTXRobot.MOTOR2));
+		//r.sleep(5000); // Pause execution for 5 seconds, but the motors keep running. 
+		//r.runMotor(RXTXRobot.MOTOR1,0,RXTXRobot.MOTOR2,0,0); // Stop both motors 

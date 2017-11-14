@@ -15,7 +15,7 @@ public class RightStartingBox {
    			r.refreshDigitalPins();
    			bump = r.getDigitalPin(11);
    			bumpy = bump.getValue();
-   			r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, 375,200);
+   			r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, -375,200);
    			System.out.println(bump);
    			r.sleep(500);
    			if (bump.getValue() == 0) {

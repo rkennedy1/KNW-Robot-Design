@@ -11,9 +11,6 @@ public class MoveServo
 		r.connect(); 
 		r.attachServo(RXTXRobot.SERVO1, 8);
 		r.moveServo(RXTXRobot.SERVO1, 180);
-		r.attachServo(RXTXRobot.SERVO2, 9);
-		r.moveServo(RXTXRobot.SERVO2, 0);
-		
 		r.close(); 
 	} 
 }
