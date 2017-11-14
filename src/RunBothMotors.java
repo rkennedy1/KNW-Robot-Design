@@ -3,16 +3,31 @@ import rxtxrobot.*;
 
 public class RunBothMotors {
 	final public static int PING_PINFront = 12; 
-	final public static int PING_PINSide = 4; 
 	
 	public static void main(String[] args) {
 		RXTXRobot r = new ArduinoUno(); // Create RXTXRobot object 
 		r.setPort("/dev/cu.usbmodem1451"); // Set port to "/dev/tty.usbmodem1451" 
 		r.connect();
-		r.setVerbose(true); // Turn on debugging messages 
-		r.attachMotor(RXTXRobot.MOTOR1, 5);		//right motor
-		r.attachMotor(RXTXRobot.MOTOR2,6);
-   			r.runMotor(RXTXRobot.MOTOR1, 250, RXTXRobot.MOTOR2, -170,3200);
+		r.attachMotor(RXTXRobot.MOTOR1, 5);		//left motor
+		r.attachMotor(RXTXRobot.MOTOR2,6);		//right motor
+		DigitalPin bump = r.getDigitalPin(4);
+		int bumpy = 1;
+		while(bumpy == 1) { //accross the bridge
+			r.refreshDigitalPins();
+   			bump = r.getDigitalPin(4);
+   			bumpy = bump.getValue(); 
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
+		}
+		r.runMotor(RXTXRobot.MOTOR1, -290, RXTXRobot.MOTOR2, 300,300);	
+		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,655);//turn right
+		bumpy=1;
+		while(bumpy == 1) { //accross the bridge
+			r.refreshDigitalPins();
+   			bump = r.getDigitalPin(4);
+   			bumpy = bump.getValue(); 
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
+		}
+		r.runMotor(RXTXRobot.MOTOR1, 0, RXTXRobot.MOTOR2, 0,300);
 		r.close();
 	}
 }

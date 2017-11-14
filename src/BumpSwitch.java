@@ -6,10 +6,10 @@ public class BumpSwitch {
 	    		RXTXRobot r = new ArduinoUno(); //Create RXTXRobot object 
 	   		r.setPort("/dev/tty.usbmodem1451"); // Sets the port to COM5  
 	   		r.connect(); 
-	   		DigitalPin bump = r.getDigitalPin(11);
+	   		DigitalPin bump = r.getDigitalPin(4);
 	   		for (int i = 0; i< 100; i++) {
 	   			r.refreshDigitalPins();
-	   			bump = r.getDigitalPin(11);
+	   			bump = r.getDigitalPin(4);
 	   			System.out.println(bump.getValue()); 
 	   			r.sleep(200);
 			}

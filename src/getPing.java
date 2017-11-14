@@ -2,15 +2,14 @@
 import rxtxrobot.*; 
  
 public class getPing { 
-	final private static int PING_PIN = 4; 
+	final private static int PING_PIN = 10;
  
 	public static void main(String[] args) { 
 		RXTXRobot r = new ArduinoNano(); // Create RXTXRobot object 
 		r.setPort("/dev/cu.usbmodem1451"); // Set the port to COM3 
 		r.connect(); 
 		for (int x=0; x < 100; x++) { 
-		//	r.refreshDigitalPins();
-			System.out.println("Response: " + r.getPing(PING_PIN) + " cm"); 
+			System.out.println("Response 1: " + r.getPing(PING_PIN) + " cm"); 
 			r.sleep(300); 
 		} 
 		r.close(); 

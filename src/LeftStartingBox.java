@@ -2,7 +2,7 @@ import rxtxrobot.*;
 
 public class LeftStartingBox {
 	final public static int PING_PINFront = 12; 
-	final public static int PING_PINSide = 4; 
+	final public static int PING_PINSide = 10; 
 	
 	public static void main(String[] args) {
 		RXTXRobot r = new ArduinoUno(); // Create RXTXRobot object 
@@ -14,24 +14,25 @@ public class LeftStartingBox {
 		r.attachMotor(RXTXRobot.MOTOR1, 5);		//right motor
 		r.attachMotor(RXTXRobot.MOTOR2,6);
 		int pingy = 41;
-		/*while(pingy > 40) { //leave start box
+		while(pingy > 40) { //leave start box
    			pingy = r.getPing(PING_PINFront);
-   			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2, -250,300);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
    			System.out.println(pingy + "cm");
 			}
 		if (r.getPing(PING_PINFront) <= 40) { //back up and turn right
-   			r.runMotor(RXTXRobot.MOTOR1, -350, RXTXRobot.MOTOR2, 250,300);
-	   		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,635);
+   			r.runMotor(RXTXRobot.MOTOR1, -290, RXTXRobot.MOTOR2, 300,300);
+	   		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,630);
 	   		}
 		pingy = 41;
 		int count = 0;
 		boolean go = true;
+		r.sleep(1000);
 		while(go) { //search for removable barrier
    			pingy = r.getPing(PING_PINFront);
-   			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2, -250,300);
-   			System.out.println(pingy + "cm");
+   			r.runMotor(RXTXRobot.MOTOR1, 290, RXTXRobot.MOTOR2, -300,300);
+   			System.out.println(pingy + "cm PINGY");
    			count++;
-   			if (count >= 10) 
+   			if (count >= 9) 
    				go = false;
    			if (pingy < 40)
    				go = false;
@@ -41,57 +42,72 @@ public class LeftStartingBox {
    			r.runMotor(RXTXRobot.MOTOR1, 0, RXTXRobot.MOTOR2, 0,300);
    			r.sleep(50);
 			}
-		if(count >= 10)
-			r.runMotor(RXTXRobot.MOTOR1, 450, RXTXRobot.MOTOR2,-370, 2800);	//up ramp
+		if(count >= 9)
+			r.runMotor(RXTXRobot.MOTOR1, 410, RXTXRobot.MOTOR2,-400, 2700);	//up ramp
 		else 
-			r.runMotor(RXTXRobot.MOTOR1, 450, RXTXRobot.MOTOR2,-370, 3300);	//up ramp with bar
+			r.runMotor(RXTXRobot.MOTOR1, 410, RXTXRobot.MOTOR2,-400, 3000);	//up ramp with barrier
 		r.moveServo(RXTXRobot.SERVO1, 90);//arm
 		r.sleep(1000);
    		if(count >= 10)
-   			r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,735);
+   			r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,735); //left turn
    		else
-   			r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,665);
-		r.runMotor(RXTXRobot.MOTOR1, 250, RXTXRobot.MOTOR2, -170,3200);
-		pingy = 0;*/
-		while (pingy < 75) {
+   			r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,665); //left turn
+		r.runMotor(RXTXRobot.MOTOR1, 250, RXTXRobot.MOTOR2, -200,3200); //down the ramp
+		pingy = 0;
+		while (pingy < 75) { //search for opening
 			pingy = r.getPing(PING_PINSide);
-   			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2, -250,300);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
    			r.sleep(50);
 		}
-		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,735);
-		r.close();
-		}
-		//r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,1500); 
-	public static double getTmReading() {
-		RXTXRobot r = new ArduinoUno();
-		int sum = 0;
-		int readingCount = 10;
-		double thermistorReading = 23.5321235321;
-	//Read the analog pin values ten times, adding to sum each time 
-		for (int i = 0; i < readingCount; i++) { 
-			//Refresh the analog pins so we get new readings  
-			int reading = 23;
-			//r.getAnalogPin(1).getValue(); 
-			sum += reading; 
+		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,745); //turn left
+		pingy = 41;
+		while(pingy > 40) { //go through the opening
+   			pingy = r.getPing(PING_PINFront);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
+   			System.out.println(pingy + "cm");
 			}
-		//Return the average reading 
-		
-		return thermistorReading;
+		if (r.getPing(PING_PINFront) <= 40) { //turn left
+	   		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,755);
+	   		}
+		pingy = 41;
+		while(pingy > 40) { //middle navigation in between bridge and barrier
+   			pingy = r.getPing(PING_PINFront);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
+   			System.out.println(pingy + "cm");
+			}
+		if (r.getPing(PING_PINFront) <= 40) { //turn right
+	   		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,655);
+	   		}
+		pingy = 41;
+		while(pingy > 40) { //To the wall before bridge
+   			pingy = r.getPing(PING_PINFront);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
+   			System.out.println(pingy + "cm");
+			}
+		if (r.getPing(PING_PINFront) <= 40) { //turn right
+	   		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,655);
+	   		}
+		r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,600); //to ramp
+		r.runMotor(RXTXRobot.MOTOR1, 455, RXTXRobot.MOTOR2, -500,4500); //up ramp
+		DigitalPin bump = r.getDigitalPin(4);
+		int bumpy = 1;
+		while(bumpy == 1) { //accross the bridge
+			r.refreshDigitalPins();
+   			bump = r.getDigitalPin(4);
+   			bumpy = bump.getValue(); 
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
 		}
-	/*public static int getTmReading() {
-	RXTXRobot r = new ArduinoUno();
-	int sum = 0;
-	int readingCount = 10;
-	//Read the analog pin values ten times, adding to sum each time 
-	for (int i = 0; i < readingCount; i++) { 
-		//Refresh the analog pins so we get new readings 
-		r.refreshAnalogPins(); 
-		int reading = r.getAnalogPin(1).getValue(); 
-		sum += reading; 
+		r.runMotor(RXTXRobot.MOTOR1, -290, RXTXRobot.MOTOR2, 300,300);	
+		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,635);//turn right
+		while(bumpy == 1) { //accross the bridge
+			r.refreshDigitalPins();
+   			bump = r.getDigitalPin(4);
+   			bumpy = bump.getValue(); 
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
 		}
-	//Return the average reading 
-	return sum / readingCount;
-	}*/
+		r.runMotor(RXTXRobot.MOTOR1, 0, RXTXRobot.MOTOR2, 0,300);
+		r.close();
+	}
 }
 
 
