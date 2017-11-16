@@ -29,7 +29,7 @@ public static void main(String[] args) {
 	//Print the results System.out.println("The probe read the value: " + thermistorReading); 
 	
 		double thermistorReading = getTmReading();
-		thermistorReading = PING_PINSide;
+		thermistorReading = 22;
 		//System.out.println("Temp in celsius: " + ((thermistorReading-748.4394801)-8.274573517));
 		System.out.println("Temp in celsius: " + ((thermistorReading-794)/-8.8));
 		r.sleep(1000); //sleep for 1 second

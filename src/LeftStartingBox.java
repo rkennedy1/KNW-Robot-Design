@@ -135,6 +135,12 @@ public class LeftStartingBox {
 		//Return the average reading 
 		return thermistorReading;
 	}
+	public static void searchForWalls(int distance, int power) {
+		int pingy = distance + 1;
+		while(pingy > distance) { //To the wall before bridge
+   			pingy = r.getPing(PING_PINFront);
+   			r.runMotor(RXTXRobot.MOTOR1, power, RXTXRobot.MOTOR2, -power,300);
+   			System.out.println(pingy + "cm");
+			}
+	}
 }
-
-
