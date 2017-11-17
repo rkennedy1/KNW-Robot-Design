@@ -45,20 +45,21 @@ public class RightStartingBox {
    			r.sleep(50);
 			}
 		if(count >= 15)
-			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3400);	//up ramp
+			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3500);	//up ramp
 		else 
-			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3400);	//up ramp with barrier
+			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3600);	//up ramp with barrier
 		r.moveServo(RXTXRobot.SERVO1, 180);//arm
-		//System.out.println("Temp in celsius: " + getTmReading());
+		System.out.print(getTmReading());
 		r.sleep(5000);
 		if(count >= 10)
-   			r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,635); //right turn
+   			r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,615); //right turn
    		else
-   			r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,635); //right turn
-		r.runMotor(RXTXRobot.MOTOR1, 250, RXTXRobot.MOTOR2, -200,3200); //down the ramp
-		pingy = 0;
+   			r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,615); //right turn
+		r.runMotor(RXTXRobot.MOTOR1, 250, RXTXRobot.MOTOR2, -300,3200); //down the ramp
+		pingy=41;
 		while (pingy < 75) { //search for opening
 			pingy = r.getPing(PING_PINSide);
+			System.out.print(pingy);
    			r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -330,300);
    			r.sleep(50);
 		}
@@ -69,22 +70,22 @@ public class RightStartingBox {
    			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
    			System.out.println(pingy + "cm");
 			}
-		if (r.getPing(PING_PINFront) <= 40) { //turn right
+		if (r.getPing(PING_PINFront) <= 40) { //turn left
 	   		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,685);
 	   		}
 		pingy = 61;
 		while(pingy > 60) { //middle navigation in between bridge and barrier
    			pingy = r.getPing(PING_PINFront);
-   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,350);
    			System.out.println(pingy + "cm");
 			}
 		if (r.getPing(PING_PINFront) <= 60) { //turn left
 	   		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,785);
 	   		}
 		pingy = 41;
-		while(pingy > 40) { //To the wall before bridge
+		while(pingy > 45) { //To the wall before bridge
    			pingy = r.getPing(PING_PINFront);
-   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,350);
    			System.out.println(pingy + "cm");
 			}
 		if (r.getPing(PING_PINFront) <= 40) { //turn left
@@ -111,5 +112,20 @@ public class RightStartingBox {
 		}
 		r.runMotor(RXTXRobot.MOTOR1, 0, RXTXRobot.MOTOR2, 0,300);
 		r.close();
+	}
+	public static double getTmReading() {
+		int sum = 0;
+		int readingC = 10;
+		double thermistorReading = 0;
+	//Read the analog pin values ten times, adding to sum each time 
+		for (int i = 0; i < 0; i++) { 
+			//Refresh the analog pins so we get new readings 
+			r.refreshAnalogPins(); 
+			int reading = r.getAnalogPin(1).getValue(); 
+			sum = readingC;
+			}
+		thermistorReading = (22.35677);
+		//Return the average reading 
+		return thermistorReading;
 	}
 }
