@@ -10,24 +10,24 @@ public class RunBothMotors {
 		r.connect();
 		r.attachMotor(RXTXRobot.MOTOR1, 5);		//left motor
 		r.attachMotor(RXTXRobot.MOTOR2,6);		//right motor
-		DigitalPin bump = r.getDigitalPin(4);
-		int bumpy = 1;
-		while(bumpy == 1) { //accross the bridge
-			r.refreshDigitalPins();
-   			bump = r.getDigitalPin(4);
-   			bumpy = bump.getValue(); 
-   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
-		}
-		r.runMotor(RXTXRobot.MOTOR1, -290, RXTXRobot.MOTOR2, 300,300);	
-		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,655);//turn right
-		bumpy=1;
-		while(bumpy == 1) { //accross the bridge
-			r.refreshDigitalPins();
-   			bump = r.getDigitalPin(4);
-   			bumpy = bump.getValue(); 
-   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
-		}
-		r.runMotor(RXTXRobot.MOTOR1, 0, RXTXRobot.MOTOR2, 0,300);
+		///DigitalPin bump = r.getDigitalPin(4);
+		//int bumpy = 1;
+		//while(bumpy == 1) { //accross the bridge
+		//	r.refreshDigitalPins();
+   		//	bump = r.getDigitalPin(4);
+   		//	bumpy = bump.getValue(); 
+   		//	r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
+		//}
+		r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,4000);	
+		//r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,655);//turn right
+		//bumpy=1;
+		//while(bumpy == 1) { //accross the bridge
+	//		r.refreshDigitalPins();
+   	//		bump = r.getDigitalPin(4);
+   	//		bumpy = bump.getValue(); 
+   	//		r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
+	//	}
+	//	r.runMotor(RXTXRobot.MOTOR1, 0, RXTXRobot.MOTOR2, 0,300);
 		r.close();
 	}
 }

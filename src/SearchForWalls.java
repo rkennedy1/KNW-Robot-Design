@@ -1,7 +1,7 @@
 import rxtxrobot.*;
 
-public class LeftStartingBox {
-	final public static int PING_PINFront = 11; 
+public class SearchForWalls {
+	final public static int PING_PINFront = 12; 
 	final public static int PING_PINSide = 10; 
 	final public static int BUMPY = 4; 
 	final public static RXTXRobot r = new ArduinoUno(); // Create RXTXRobot object 
@@ -10,30 +10,31 @@ public class LeftStartingBox {
 		RXTXRobot r = new ArduinoUno(); // Create RXTXRobot object 
 		r.setPort("/dev/cu.usbmodem1451"); // Set port to "/dev/tty.usbmodem1451" 
 		r.connect();
-		r.setResetOnClose(false);
 		//r.setVerbose(true); // Turn on debugging messages 
 		r.attachServo(RXTXRobot.SERVO1, 8);
+		r.moveServo(RXTXRobot.SERVO1, 0);
 		r.attachMotor(RXTXRobot.MOTOR1, 5);		//right motor
 		r.attachMotor(RXTXRobot.MOTOR2,6);
 		int pingy = 41;
 		while(pingy > 40) { //leave start box
    			pingy = r.getPing(PING_PINFront);
-   			r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -300,300);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
    			System.out.println(pingy + "cm");
 			}
 		if (r.getPing(PING_PINFront) <= 40) { //back up and turn right
    			r.runMotor(RXTXRobot.MOTOR1, -290, RXTXRobot.MOTOR2, 300,300);
-	   		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,680);
+	   		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,630);
 	   		}
 		pingy = 41;
 		int count = 0;
 		boolean go = true;
+		r.sleep(1000);
 		while(go) { //search for removable barrier
    			pingy = r.getPing(PING_PINFront);
-   			r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -300,300);
+   			r.runMotor(RXTXRobot.MOTOR1, 290, RXTXRobot.MOTOR2, -300,300);
    			System.out.println(pingy + "cm PINGY");
    			count++;
-   			if (count >= 12) 
+   			if (count >= 9) 
    				go = false;
    			if (pingy < 40)
    				go = false;
@@ -43,95 +44,80 @@ public class LeftStartingBox {
    			r.runMotor(RXTXRobot.MOTOR1, 0, RXTXRobot.MOTOR2, 0,300);
    			r.sleep(50);
 			}
-		if(count >= 15)
-			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3450);	//up ramp
+		if(count >= 9)
+			r.runMotor(RXTXRobot.MOTOR1, 410, RXTXRobot.MOTOR2,-400, 2700);	//up ramp
 		else 
-			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3650);//up ramp with barrier
+			r.runMotor(RXTXRobot.MOTOR1, 410, RXTXRobot.MOTOR2,-400, 3000);//up ramp with barrier
 		r.moveServo(RXTXRobot.SERVO1, 180);//arm
 		r.sleep(1250);
 		System.out.print(getTmReading());
 		r.sleep(5000);
 		r.moveServo(RXTXRobot.SERVO1, 90);
-   		if(count >= 15)
-   			r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,975); //left turn
+   		if(count >= 10)
+   			r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,735); //left turn
    		else
-   			r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,975); //left turn
-		r.runMotor(RXTXRobot.MOTOR1, 250, RXTXRobot.MOTOR2, -300,3200); //down the ramp
+   			r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,715); //left turn
+		r.runMotor(RXTXRobot.MOTOR1, 250, RXTXRobot.MOTOR2, -200,3200); //down the ramp
 		pingy = 0;
 		while (pingy < 75) { //search for opening
 			pingy = r.getPing(PING_PINSide);
-   			r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -370,300);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
    			r.sleep(50);
 		}
-		r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -370,200);
-		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,845); //turn left
+		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,745); //turn left
 		pingy = 41;
 		while(pingy > 40) { //go through the opening
    			pingy = r.getPing(PING_PINFront);
-   			r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -370,300);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
    			System.out.println(pingy + "cm");
 			}
 		if (r.getPing(PING_PINFront) <= 40) { //turn left
-	   		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,825);
-	   		}
-		pingy = 61;
-		while(pingy > 60) { //middle navigation in between bridge and barrier
-   			pingy = r.getPing(PING_PINFront);
-   			r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -370,300);
-   			System.out.println(pingy + "cm");
-			}
-		if (r.getPing(PING_PINFront) <= 60) { //turn right
-	   		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,685);
+	   		r.runMotor(RXTXRobot.MOTOR1, -500, RXTXRobot.MOTOR2, -500,755);
 	   		}
 		pingy = 41;
-		while(pingy > 20) { //To the wall before bridge
+		while(pingy > 40) { //middle navigation in between bridge and barrier
    			pingy = r.getPing(PING_PINFront);
-   			r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -370,300);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
    			System.out.println(pingy + "cm");
 			}
-		if (r.getPing(PING_PINFront) <= 20) { //turn right
+		if (r.getPing(PING_PINFront) <= 40) { //turn right
+	   		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,735);
+	   		}
+		pingy = 41;
+		while(pingy > 40) { //To the wall before bridge
+   			pingy = r.getPing(PING_PINFront);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
+   			System.out.println(pingy + "cm");
+			}
+		if (r.getPing(PING_PINFront) <= 40) { //turn right
 	   		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,655);
 	   		}
+		r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,600); //to ramp
+		r.runMotor(RXTXRobot.MOTOR1, 455, RXTXRobot.MOTOR2, -500,4500); //up ramp
 		DigitalPin bump = r.getDigitalPin(4);
 		int bumpy = 1;
 		while(bumpy == 1) { //accross the bridge
 			r.refreshDigitalPins();
    			bump = r.getDigitalPin(4);
    			bumpy = bump.getValue(); 
-   			r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -370,300);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
 		}
-		r.runMotor(RXTXRobot.MOTOR1, -240, RXTXRobot.MOTOR2, 370,500);	
-		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,635);//turn right
-		r.runMotor(RXTXRobot.MOTOR1, -240, RXTXRobot.MOTOR2, 370,1200); //back up
-		r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -300,600); //to ramp
-		r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2, -500,4500); //up ramp
-		bumpy = 1;
-		while(bumpy == 1) { //accross the bridge
-			r.refreshDigitalPins();
-   			bump = r.getDigitalPin(4);
-   			bumpy = bump.getValue(); 
-   			r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -370,300);
-		}
-		r.runMotor(RXTXRobot.MOTOR1, -240, RXTXRobot.MOTOR2, 370,300);	
-		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,635);//turn right
+		r.runMotor(RXTXRobot.MOTOR1, -290, RXTXRobot.MOTOR2, 300,300);	
+		r.runMotor(RXTXRobot.MOTOR1, 500, RXTXRobot.MOTOR2, 500,635);//turn right*/
 		bumpy =1;
 		while(bumpy == 1) { //to sand box
 			r.refreshDigitalPins();
    			bump = r.getDigitalPin(4);
    			bumpy = bump.getValue(); 
    			System.out.print(bumpy);
-   			r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -370,300);
+   			r.runMotor(RXTXRobot.MOTOR1, 300, RXTXRobot.MOTOR2, -300,300);
 		}
 		r.runMotor(RXTXRobot.MOTOR1, 0, RXTXRobot.MOTOR2, 0,300);
-		r.attachServo(RXTXRobot.SERVO2, 7);
-		r.moveServo(RXTXRobot.SERVO2, 180);
-		r.sleep(2000);
+		r.attachServo(RXTXRobot.SERVO2, 9);
 		r.moveServo(RXTXRobot.SERVO2, 0);
 		r.sleep(1000);
-		r.attachServo(RXTXRobot.SERVO3, 9);
-		r.moveServo(RXTXRobot.SERVO3, 0);
-		r.sleep(2000);
-		r.moveServo(RXTXRobot.SERVO3, 90);
+		r.attachServo(RXTXRobot.SERVO3, 7);
+		r.moveServo(RXTXRobot.SERVO3, 180);
 		r.close();
 	}
 	public static double getTmReading() {
@@ -148,5 +134,13 @@ public class LeftStartingBox {
 		thermistorReading = (22.3179797);
 		//Return the average reading 
 		return thermistorReading;
+	}
+	public static void searchForWalls(int distance, int power) {
+		int pingy = distance + 1;
+		while(pingy > distance) { //To the wall before bridge
+   			pingy = r.getPing(PING_PINFront);
+   			r.runMotor(RXTXRobot.MOTOR1, power, RXTXRobot.MOTOR2, -power,300);
+   			System.out.println(pingy + "cm");
+			}
 	}
 }
