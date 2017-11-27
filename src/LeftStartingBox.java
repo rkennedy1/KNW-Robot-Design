@@ -33,8 +33,8 @@ public class LeftStartingBox {
    			r.runMotor(RXTXRobot.MOTOR1, 240, RXTXRobot.MOTOR2, -300,300);
    			System.out.println(pingy + "cm PINGY");
    			count++;
-   			if (count >= 12) 
-   				go = false;
+   			//if (count >= 12) 
+   			//	go = false;
    			if (pingy < 40)
    				go = false;
 			}
@@ -43,9 +43,9 @@ public class LeftStartingBox {
    			r.runMotor(RXTXRobot.MOTOR1, 0, RXTXRobot.MOTOR2, 0,300);
    			r.sleep(50);
 			}
-		if(count >= 15)
-			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3850);	//up ramp
-		else 
+		//if(count >= 15)
+		//	r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3850);	//up ramp
+		//else 
 			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3850);//up ramp with barrier
 		r.moveServo(RXTXRobot.SERVO1, 180);//arm
 		r.sleep(1250);

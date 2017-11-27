@@ -45,9 +45,9 @@ public class RightStartingBox {
    			r.sleep(50);
 			}
 		if(count >= 15)
-			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3500);	//up ramp
+			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3900);	//up ramp
 		else 
-			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3600);	//up ramp with barrier
+			r.runMotor(RXTXRobot.MOTOR1, 350, RXTXRobot.MOTOR2,-500, 3900);	//up ramp with barrier
 		r.moveServo(RXTXRobot.SERVO1, 180);//arm
 		System.out.print(getTmReading());
 		r.sleep(5000);
